@@ -286,7 +286,7 @@ export default class ModalDropdown extends Component {
       <FlatList scrollEnabled={scrollEnabled}
                 style={styles.list}
                 data={options}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={this._renderRow}
                 renderSeparator={renderSeparator || this._renderSeparator}
                 automaticallyAdjustContentInsets={false}
@@ -300,7 +300,7 @@ export default class ModalDropdown extends Component {
   _renderRow = (rowData) => {
     const {renderRow, dropdownTextStyle, dropdownTextHighlightStyle, accessible} = this.props;
     const {selectedIndex} = this.state;
-    const key = rowData.index;
+    const key = `row_${rowData.index}`;
     const highlighted = rowData.index === selectedIndex;
     const row = !renderRow ?
       (<Text style={[
